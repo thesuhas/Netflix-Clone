@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from './axios';
+import './Row.css';
+
+const base_url = 'https://image.tmdb.org/t/p/original/'
 
 function Row({ title, fetchUrl }) {
     // A state is maintained to keep track of movies
@@ -10,18 +13,31 @@ function Row({ title, fetchUrl }) {
     // useEffect is use to do something after the render, will be called later, after performing DOM updates
     // By default it runs after every render and update
     // [] says run once when the row loads, no dependencies, will not run again
-
+    // everytime the dependencies change, useEffect is run [dependencies]
     useEffect(() => {
         async function fetchData() {
             const request = await axios.get(fetchUrl);
             console.log(request);
+            setMovies(request.data.results);
             return request
         }
         fetchData();
-    }, []);
+    }, [fetchUrl]);
     return (
-        <div>
+        <div className='row'>
             <h2>{title}</h2>
+
+            <div className='row_posters'>
+                {/* Several row posters */}
+
+                {/* Curly braces indicate it is JS and not a string */}
+                {movies.map(movie => (
+                    <img 
+                    className='row_poster'
+                    src={`${base_url}${movie.poster_path}`} 
+                    alt={movie.name}></img>
+                ))}
+            </div>
         </div>
     )
 }
