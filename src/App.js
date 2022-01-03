@@ -6,7 +6,7 @@ import Banner from './Banner';
 function App() {
   return (
     <div className="app">
-      <h1>Test Front-End</h1>
+      <h1>PESFlix</h1>
       <Banner/>
       <Row 
       title={'NETFLIX ORIGINALS'} 
