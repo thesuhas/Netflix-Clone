@@ -4,7 +4,7 @@ import './Row.css';
 
 const base_url = 'https://image.tmdb.org/t/p/original/'
 
-function Row({ title, fetchUrl }) {
+function Row({ title, fetchUrl, isLargeRow }) {
     // A state is maintained to keep track of movies
     // Use State takes in an initial argument, here it is an empty array
     // Use State returns the current state and a function that can be used to set the state
@@ -33,8 +33,9 @@ function Row({ title, fetchUrl }) {
                 {/* Curly braces indicate it is JS and not a string */}
                 {movies.map(movie => (
                     <img 
-                    className='row_poster'
-                    src={`${base_url}${movie.poster_path}`} 
+                    key={movie.id}
+                    className={`row_poster ${isLargeRow && 'row_posterLarge'}`}
+                    src={`${base_url}${isLargeRow ? movie.poster_path: movie.backdrop_path}`} 
                     alt={movie.name}></img>
                 ))}
             </div>
