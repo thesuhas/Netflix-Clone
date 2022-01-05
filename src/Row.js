@@ -47,7 +47,9 @@ function Row({ title, fetchUrl, isLargeRow }) {
                 const UrlParams = new URLSearchParams(new URL(url).search);
                 // Gets the v param from the url
                 setTrailerUrl(UrlParams.get('v'));
-            }).catch(error => console.log(error));
+            }).catch(error => {
+                console.log(error);
+            });
         }
     };
 
